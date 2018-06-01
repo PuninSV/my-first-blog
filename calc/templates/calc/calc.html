@@ -22,7 +22,7 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-4" style="background-color: #edffd5; height: 280px; position: relative;">
+			<div class="col-md-4" style="background-color: #edffd5; height: 340px; position: relative;">
 				<h4 align="center">BB</h4>
 				<form class='form-horizontal' action="" method="POST">
    					{% csrf_token %}
@@ -62,7 +62,7 @@
     				<input type="hidden" value="BB_form" name="form_type">
 
     			
-    			    <div class="form-group" align="center">
+    			    <div class="col-sm-12" align="center">
     				<input type="radio" name="BB" id="B1" value="B1">
     				    <label for='B2'>B1 &nbsp</label>
     				<input type="radio" name="BB" id="B2" value="B2">
@@ -80,13 +80,14 @@
     				<input type="radio" name="BB" id="B8" value="B8">
     				    <label for='B4'>B8 &nbsp</label>
     				</div>
+    				
 
-    				<div style="position: absolute; bottom: 0px; right: 0px">
-    				<button type="submit" value="Submit" class="btn btn-success">Считать</button>
+    				<div class="col-sm-12" align="right" style="position: absolute; bottom: 0px; right: 0px">
+    				<button type="submit" value="Submit" class="btn btn-success btn-md btn-block">Считать</button>
     			    </div>
 				</form>
 			</div>
-			<div class="col-md-4" style="background-color: #ffcdf0; height: 280px; position: relative;">
+			<div class="col-md-4" style="background-color: #ffcdf0; height: 340px; position: relative;">
 				<h4 align="center">КД</h4>
 				<form class='form-horizontal' action="" method="POST">
    					{% csrf_token %}
@@ -116,11 +117,11 @@
 
     				<input type="hidden" value="KD_form" name="form_type">
 
-    				<div class="form-group" align="center">
+    				<div class="col-sm-12" align="center">    				
     				<input type="radio" name="KD" id="KD1" value="KD1">
-    				    <label for='B2'>КД1 &nbsp</label>
+    				    <label for='B2'>КД1 &nbsp</label>				
     				<input type="radio" name="KD" id="KD2" value="KD2">
-    				    <label for='B2'>КД2 &nbsp</label>
+    				    <label for='B2'>КД2 &nbsp</label>    				
     				<input type="radio" name="KD" id="KD3" value="KD3">
     				    <label for='B3'>КД3 &nbsp</label>
     				<input type="radio" name="KD" id="KD4" value="KD4">
@@ -128,14 +129,14 @@
     				</div>
     				
 
-    				<div style="position: absolute; bottom: 0px; right: 0px">
-    				<button type="submit" value="Submit" class="btn btn-success">Считать</button>
+    				<div class="col-sm-12" align="right" style="position: absolute; bottom: 0px; right: 0px">
+    				<button type="submit" value="Submit" class="btn btn-success btn-md btn-block">Считать</button>
     			    </div>
     			</form>
     			
     			
 			</div>
-			<div class="col-md-4" style="background-color: #cbe1ff; height: 280px; position: relative;">
+			<div class="col-md-4" style="background-color: #cbe1ff; height: 340px; position: relative;">
 				<h4 align="center">N</h4>
 				<form class='form-horizontal' action="" method="POST">
    					{% csrf_token %}
@@ -165,16 +166,21 @@
 
 
     				<input type="hidden" value="N_form" name="form_type">
-    				<div style="position: absolute; bottom: 0px; right: 0px">
-    				<button type="submit" value="Submit" class="btn btn-success">Считать</button>
+    				<div class="col-sm-12" align="right" style="position: absolute; bottom: 0px; right: 0px">
+    				<button type="submit" value="Submit" class="btn btn-success btn-md btn-block">Считать</button>
     			    </div>
     			</form>
 			</div>
 		</div>
 	</div>	
 
-<div class="container" style="position: relative; top: 130px">
-<p align="center"><font style="font-size:10vw"; color="green">{{money}}</font></p>
+<div class="container" style="position: relative; top: 25px">
+<p align="center"><font style="font-size:24px"; color="blue">{{ordered_money}}</font></p>
+</div>
+
+
+<div class="container" style="position: relative; top: 70px">
+<p align="center"><font style="font-size:120px"; color="green">{{money}}</font></p>
 </div>
 
 </body>
