@@ -76,7 +76,7 @@ def calc(request):
             ordered_money = round(ordered_money)
 
             
-            return render(request, 'calc/calc.html', {'money': money, 'ordered_money': "Заказано " + str(round(ordered_m)) + " грамм за " + str(ordered_money) + " USD"})
+            return render(request, 'calc/calc.html', {'money': money, 'ordered_money': "Заказано " + str(round(ordered_m)) + " г за " + str(ordered_money) + " USD"})
 
 
 
@@ -116,7 +116,7 @@ def calc(request):
             money = round(money)
             ordered_money = round(ordered_money)
 
-            return render(request, 'calc/calc.html', {'money': money, 'ordered_money': "Заказано " + str(round(ordered_m)) + " грамм за " + str(ordered_money) + " USD"})
+            return render(request, 'calc/calc.html', {'money': money, 'ordered_money': "Заказано " + str(round(ordered_m)) + " г за " + str(ordered_money) + " USD"})
 
         elif request.POST.get('form_type') == 'N_form':
             sdano = float(request.POST.get('sdano'))
@@ -135,7 +135,7 @@ def calc(request):
                 money = N_price + 0.25*N_price + 0.125*N_price + (sdano - 2*ordered_m)*0.1*N_price/ordered_m
             money = round(money)
 
-            return render(request, 'calc/calc.html', {'money': money, 'ordered_money': "Заказано " + str(round(ordered_m)) + " грамм за " + str(round(N_price)) + " USD"})
+            return render(request, 'calc/calc.html', {'money': money, 'ordered_money': "Заказано " + str(round(ordered_m)) + " г за " + str(round(N_price)) + " USD"})
     else:
         return render(request, 'calc/calc.html', {})
 
