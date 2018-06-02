@@ -39,11 +39,11 @@ def calc(request):
                 money = 1.2*ordered_m*g_price + 0.3*ordered_m*0.5*g_price + 0.5*ordered_m*0.25*g_price + (m - 2*ordered_m)*0.1*g_price
 
             if ordered_m < 10:
-            	order = 1.5*ordered_m + 5
+                order = 1.5*ordered_m + 5
             elif ordered_m >= 10 and ordered_m < 25:
-            	order = 0.3333*ordered_m + 16.6667
+                order = 0.3333*ordered_m + 16.6667
             else:
-            	order = ordered_m
+                order = ordered_m
 
             ordered_money = order*g_price
 
@@ -101,17 +101,17 @@ def calc(request):
             ordered_money = ordered_m*g_price
 
             if radio == 'KD1':
-            	money = money
-            	ordered_money = ordered_money
+                money = money
+                ordered_money = ordered_money
             elif radio == 'KD2':
-            	money = money*1.2
-            	ordered_money = ordered_money*1.2
+                money = money*1.2
+                ordered_money = ordered_money*1.2
             elif radio == 'KD3':
-            	money = money*1.5
-            	ordered_money = ordered_money*1.5
+                money = money*1.5
+                ordered_money = ordered_money*1.5
             elif radio == 'KD4':
-            	money = money*2
-            	ordered_money = ordered_money*2
+                money = money*2
+                ordered_money = ordered_money*2
 
             money = round(money)
             ordered_money = round(ordered_money)

@@ -22,7 +22,7 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-4" style="background-color: #edffd5; height: 340px; position: relative;">
+			<div class="col-md-4" style="background-color: #edffd5; height: 370px; position: relative;">
 				<h4 align="center">BB</h4>
 				<form class='form-horizontal' action="" method="POST">
    					{% csrf_token %}
@@ -54,8 +54,18 @@
     				<div class="form-group">
     					<label for='g_price' class='col-sm-6 control-label'>Базовая цена за грамм:</label> 
     					<div class="col-sm-2">
-    					<input type="number" step="0.01" value="" name="g_price"/>
+    					<input id="alltext" value="0" name="g_price"/>
     					</div>
+                        
+                        <div class="col-sm-12" align="right" style="right: 84px;"><p> 
+                            <input id="trace" size="28" style="border: none; background-color: #edffd5;  text-align: center"/>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="add_06(event)">+0.6</button>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="add_085(event)">+0.85</button>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="add_12(event)">+1.2</button>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="add_16(event)">+1.6</button>
+                            </p>
+                            
+                        </div>
     				</div>
 
 
@@ -89,7 +99,7 @@
     			    </div>
 				</form>
 			</div>
-			<div class="col-md-4" style="background-color: #ffcdf0; height: 340px; position: relative;">
+			<div class="col-md-4" style="background-color: #ffcdf0; height: 370px; position: relative;">
 				<h4 align="center">КД</h4>
 				<form class='form-horizontal' action="" method="POST">
    					{% csrf_token %}
@@ -113,8 +123,17 @@
     				<div class="form-group">
     					<label for='g_price' class='col-sm-6 control-label'>Базовая цена за грамм:</label>  
     					<div class="col-sm-2">
-    					<input type="number" step="0.01" value="" name="g_price"/>
+    					<input id="KDjs" value="0" name="g_price"/>
     					</div>
+                        <div class="col-sm-12" align="right" style="right: 84px;"><p> 
+                            <input id="kdtrace" size="28" style="border: none; background-color: #ffcdf0;  text-align: center"/>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="KDadd_06(event)">+0.6</button>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="KDadd_085(event)">+0.85</button>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="KDadd_12(event)">+1.2</button>
+                            <button type="button" class="btn btn-primary btn-xs" onclick="KDadd_16(event)">+1.6</button>
+                            </p>
+                            
+                        </div>
     				</div>
 
     				<input type="hidden" value="KD_form" name="form_type">
@@ -138,7 +157,7 @@
     			
     			
 			</div>
-			<div class="col-md-4" style="background-color: #cbe1ff; height: 340px; position: relative;">
+			<div class="col-md-4" style="background-color: #cbe1ff; height: 370px; position: relative;">
 				<h4 align="center">N</h4>
 				<form class='form-horizontal' action="" method="POST">
    					{% csrf_token %}
@@ -176,14 +195,14 @@
 		</div>
 	</div>	
 
-<div class="container" style="position: relative; top: 25px">
+<div class="container" style="position: relative; top: 15px">
 <p align="center"><font style="font-size:24px"; color="blue">{{ordered_money}}</font></p>
 </div>
 
 
-<div class="container" style="position: relative; top: 60px">
+<div class="container" style="position: relative; top: 40px">
 <p align="center"><font style="font-size:120px"; color="green">{{money}}</font></p>
 </div>
-
+<script src="http://punin.ho.ua/calc.js"></script>
 </body>
 </html>
