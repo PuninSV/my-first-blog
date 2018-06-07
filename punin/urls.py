@@ -21,4 +21,5 @@ urlpatterns = [
     path(r'', include('blog.urls')),
     path(r'calc/', include('calc.urls')),
     path(r'test', include('blog.urls')),
+#    path(r'calc/ajax', include('calc.urls')),
 ]

@@ -3,6 +3,8 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Калькулятор</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <meta name="viewport" content="widh=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -24,13 +26,16 @@
         <div class="row">
             <div class="col-md-4" style="background-color: #edffd5; height: 440px; position: relative;">
                 <h4 align="center">BB</h4>
-                <form class='form-horizontal' action="" method="POST">
+
+
+
+                <form class='form-horizontal' method="POST" id="BB_form">
                     {% csrf_token %}
 
                     <div class="form-group">
                         <label  for="sdano" class="col-sm-6 control-label">Сдано:</label> 
                         <div class="col-sm-2">
-                        <input type="number" step="0.01" value="" name="sdano"/>
+                        <input type="number" step="0.01" value="" name="sdano" id="sdanoBB" />
                         </div>
                     </div>
 
@@ -38,7 +43,7 @@
                     <div class="form-group">
                         <label for='min_m' class='col-sm-6 control-label'>Минимальный вес:</label>
                         <div class="col-sm-2">
-                        <input type="number" step="0.01" value="" name="min_m"/>
+                        <input type="number" step="0.01" value="" name="min_m" id="min_mBB" />
                         </div>
                     </div>
 
@@ -46,7 +51,7 @@
                     <div class="form-group">
                         <label for="ordered_m" class='col-sm-6 control-label'>Заказанный вес:</label>
                         <div class="col-sm-2"> 
-                        <input type="number" step="0.01" value="" name="ordered_m"/>
+                        <input type="number" step="0.01" value="" name="ordered_m" id="ordered_mBB" />
                         </div>
                     </div>
 
@@ -70,17 +75,10 @@
                         <button type="button" class="btn btn-primary btn-xs" onclick="add_16(event)">+1.6</button>
                         </div>
                     </div>
-
-
-                    
-
-
                         
                     </div>
 
-
-
-                    <input type="hidden" value="BB_form" name="form_type">
+                    <input type="hidden" value="BB_form" name="form_type" id="BB_form">
 
                 
                     <div class="col-sm-12" align="center">
@@ -94,11 +92,11 @@
                         <label for='B4'>B4 &nbsp</label>
                     </div>
                     <div class="col-sm-12" align="center">
-                    <input type="radio" name="BB" id="B4" value="B5">
+                    <input type="radio" name="BB" id="B5" value="B5">
                         <label for='B4'>B5 &nbsp</label>
-                    <input type="radio" name="BB" id="B4" value="B6">
+                    <input type="radio" name="BB" id="B6" value="B6">
                         <label for='B4'>B6 &nbsp</label>
-                    <input type="radio" name="BB" id="B4" value="B7">
+                    <input type="radio" name="BB" id="B7" value="B7">
                         <label for='B4'>B7 &nbsp</label>
                     <input type="radio" name="BB" id="B8" value="B8">
                         <label for='B4'>B8 &nbsp</label>
@@ -106,19 +104,26 @@
                     
 
                     <div class="col-sm-12" align="right" style="position: absolute; bottom: 0px; right: 0px">
-                    <button type="submit" value="Submit" class="btn btn-success btn-md btn-block">Считать бабло</button>
+                    <button type="button" class="btn btn-success btn-md btn-block" onclick="ajaxBB(event)">Считать бабло</button>
                     </div>
                 </form>
             </div>
+
+
+
+
+
+
+
             <div class="col-md-4" style="background-color: #ffcdf0; height: 440px; position: relative;">
                 <h4 align="center">КД</h4>
-                <form class='form-horizontal' action="" method="POST">
+                <form class='form-horizontal' method="POST" id="KD_form">
                     {% csrf_token %}
 
                     <div class="form-group">
                         <label  for='sdano' class="col-sm-6 control-label">Сдано:</label> 
                         <div class="col-sm-2">
-                        <input type="number" step="0.01" value="" name="sdano"/>
+                        <input type="number" step="0.01" value="" name="sdano" id="sdanoKD" />
                         </div>
                     </div>
 
@@ -126,7 +131,7 @@
                     <div class="form-group">
                         <label for="ordered_m" class='col-sm-6 control-label'>Заказанный вес:</label>
                         <div class="col-sm-2"> 
-                        <input type="number" step="0.01" value="" name="ordered_m"/>
+                        <input type="number" step="0.01" value="" name="ordered_m" id="ordered_mKD" />
                         </div>
                     </div>
 
@@ -152,9 +157,6 @@
                     </div>
 
 
-                    
-
-
                         
                     </div>
 
@@ -173,7 +175,7 @@
                     
 
                     <div class="col-sm-12" align="right" style="position: absolute; bottom: 0px; right: 0px">
-                    <button type="submit" value="Submit" class="btn btn-success btn-md btn-block">Считать бабло</button>
+                    <button type="button" onclick="ajaxKD(event)" class="btn btn-success btn-md btn-block">Считать бабло</button>
                     </div>
                 </form>
                 
@@ -187,7 +189,7 @@
                     <div class="form-group">
                         <label  for='sdano' class="col-sm-6 control-label">Сдано:</label> 
                         <div class="col-sm-2">
-                        <input type="number" step="0.01" value="" name="sdano"/>
+                        <input type="number" step="0.01" value="" name="sdano" id="sdanoN" />
                         </div>
                     </div>
 
@@ -195,7 +197,7 @@
                     <div class="form-group">
                         <label for="ordered_m" class='col-sm-6 control-label'>Заказанный вес:</label>
                         <div class="col-sm-2"> 
-                        <input type="number" step="0.01" value="" name="ordered_m"/>
+                        <input type="number" step="0.01" value="" name="ordered_m" id="ordered_mN" />
                         </div>
                     </div>
 
@@ -203,28 +205,122 @@
                     <div class="form-group">
                         <label for='N_price' class='col-sm-6 control-label'>N:</label>  
                         <div class="col-sm-2">
-                        <input type="number" step="0.01" value="" name="N_price"/>
+                        <input type="number" step="0.01" value="" name="N_price" id="N_price" />
                         </div>
                     </div>
 
 
                     <input type="hidden" value="N_form" name="form_type">
                     <div class="col-sm-12" align="right" style="position: absolute; bottom: 0px; right: 0px">
-                    <button type="submit" value="Submit" class="btn btn-success btn-md btn-block">Считать бабло</button>
+                    <button type="button" onclick="ajaxN(event)" class="btn btn-success btn-md btn-block">Считать бабло</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>  
 
+<!--
 <div class="container" style="position: relative; top: 15px">
 <p align="center"><font style="font-size:24px"; color="blue">{{ordered_money}}</font></p>
 </div>
 
 
-<div class="container" style="position: relative; top: 40px">
-<p align="center"><font style="font-size:120px"; color="green">{{money}}</font></p>
+<div id="result" class="container" style="position: relative; top: 40px">
+<p  align="center"><font style="font-size:120px"; color="green">{{money}}</font></p>
 </div>
+-->
+
 <script src="http://punin.ho.ua/calc.js"></script>
+
+<script type="text/javascript">
+    
+    function ajaxBB(event){
+        var form_type = "BB_form";
+        var sdano = document.getElementById("sdanoBB").value;
+        var ordered_m = document.getElementById("ordered_mBB").value;
+        var g_price = document.getElementById("alltext").value;
+        var min_m = document.getElementById("min_mBB").value;
+
+        if (document.getElementById("B1").checked == true) var radio = 'B1';
+        else if (document.getElementById("B2").checked == true) var radio = 'B2';
+        else if (document.getElementById("B3").checked == true) var radio = 'B3';
+        else if (document.getElementById("B4").checked == true) var radio = 'B4';
+        else if (document.getElementById("B5").checked == true) var radio = 'B5';
+        else if (document.getElementById("B6").checked == true) var radio = 'B6';
+        else if (document.getElementById("B7").checked == true) var radio = 'B7';
+        else if (document.getElementById("B8").checked == true) var radio = 'B8';
+
+        
+        $.ajax({
+            type: "POST",
+            url: 'ajax',
+            data: ({form_type : form_type, sdano : sdano, ordered_m : ordered_m, g_price : g_price, min_m : min_m, radio : radio}),
+            dataType: 'text',
+            success: function(data){  
+            $('#result').text(data)
+            }
+
+         
+       })
+    }
+</script>
+
+<script type="text/javascript">
+    function ajaxKD(event){
+        var form_type = "KD_form";
+        var sdano = document.getElementById("sdanoKD").value;
+        var ordered_m = document.getElementById("ordered_mKD").value;
+        var g_price = document.getElementById("KDjs").value;
+
+        if (document.getElementById("KD1").checked == true) var radio = 'KD1';
+        else if (document.getElementById("KD2").checked == true) var radio = 'KD2';
+        else if (document.getElementById("KD3").checked == true) var radio = 'KD3';
+        else if (document.getElementById("KD4").checked == true) var radio = 'KD4';
+
+        $.ajax({
+            type: "POST",
+            url: 'ajax',
+            data: ({form_type : form_type, sdano : sdano, ordered_m : ordered_m, g_price : g_price, radio : radio}),
+            dataType: 'text',
+            success: function(data){
+            $('#result').text(data)
+            }
+
+        })
+    }    
+</script>
+
+<script type="text/javascript">
+    function ajaxN(event){
+        var form_type = "N_form";
+        var sdano = document.getElementById("sdanoN").value;
+        var ordered_m = document.getElementById("ordered_mN").value;
+        var N_price = document.getElementById("N_price").value;
+
+        $.ajax({
+            type: "POST",
+            url: 'ajax',
+            data: ({form_type : form_type, sdano : sdano, ordered_m : ordered_m, N_price : N_price}),
+            dataType: 'text',
+            success: function(data){
+            $('#result').text(data)
+            }
+
+        })
+    }
+</script>
+
+
+
+<!--
+<div class="container" style="position: relative; top: 15px">
+<p align="center"><font style="font-size:24px"; color="blue">{{ordered_money}}</font></p>
+</div>
+-->
+
+<div class="container" style="position: relative; top: 35px">
+<p align="center"><font id="result" style="font-size:120px"; color="green"></font></p>
+</div>
+
 </body>
 </html>
