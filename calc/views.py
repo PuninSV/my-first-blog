@@ -259,6 +259,13 @@ def ajax(request):
             money = round(money)
 
             return HttpResponse(money)
+
+def water(request):
+    return render(request, 'water/water.html', {})
+
+def calc_js(request):
+    return render(request, 'calc/calc.js', {})
+
             
 
 

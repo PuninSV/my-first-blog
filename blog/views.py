@@ -17,6 +17,9 @@ def post_list(request):
 def test(request):
         return render(request, 'blog/test.html', {})
 
+@csrf_exempt
+def main(request):
+    return render(request, 'blog/main.html', {})
 
 
 
